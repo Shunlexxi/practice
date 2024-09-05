@@ -3,7 +3,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # Deploy when pushing to the main branch (change this if needed)
+      - main  # Deploy when pushing to the main branch
+
+permissions:
+  contents: write  # Ensure write permissions
 
 jobs:
   deploy:
@@ -28,3 +31,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
+          publish_branch: gh-pages  # This specifies the branch to create if it doesn't exist
+          allow_empty_commit: true   # Allows empty commits if there are no changes
